@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block main %}
+    <form id="register" action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+    </form>
+
+    <script>
+        var username = document.querySelector("input.username");
+        var registerForm = document.querySelector("form");
+        $("form").on("submit"), function(event){
+            event.preventDefault();
+            $.get("/check?username=" + $("#username").val(), function(data) {
+                if (data == false){
+                    alert("Username is not available!");
+                     $("register")[0].reset();
+                     $("#username").focus();
+                }
+                else {
+                    $("register").submit();
+                }
+            });
+        };
+    </script>
+{% endblock %}

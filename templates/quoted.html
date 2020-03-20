@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Quote
+{% endblock %}
+
+{% block main %}
+    <div class="container results-container">
+        <div class="card border-primary mb-3">
+            <div class="card-body">
+                <h6 class="card-text">{{results["name"]}}</h6>
+                <h6 class="card-text">{{results["symbol"]}}</h6>
+                <h6 class="card-text">{{results["price"] | usd}}</h6>
+            </div>
+        </div>
+        <a href="{{url_for('quote')}}"><button class="btn btn-primary" type="submit">Back</button></a>
+    </div>
+{% endblock %}
